@@ -1,0 +1,8 @@
+.toast-hidden {
+   transform: translateX(200%);
+   transition: all ease 0.5s;
+}
+.toast-visible {
+   transform: translateX(0%);
+   transition: all ease 0.5s;
+}
