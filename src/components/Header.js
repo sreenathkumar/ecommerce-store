@@ -3,6 +3,9 @@ import Navbar from './Navbar'
 import TopBar from './TopBar'
 export default function Header() {
 
+   const path = document.location.pathname;
+   console.log(path);
+
    return (
 
       <div className="bg-white">
