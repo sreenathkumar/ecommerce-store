@@ -2,35 +2,42 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Toast from "../components/ui/Toast";
+import { useLoginMutation } from "../features/auth/authApi";
 
 export default function Login() {
-   const [email, setEmail] = useState('')
-   const [password, setPassword] = useState('')
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+
+   const [login, { isSuccess, isError }] = useLoginMutation();
 
    const navigate = useNavigate();
 
    const handleLogin = async (e) => {
       e.preventDefault();
       console.log('login clicked');
-      const res = await fetch('api/login', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({
-            username: email,
-            password,
-         })
+      login({
+         username: email,
+         password
       })
-      const data = await res.json();
-      if (res.status === 200) {
-         Toast(data.type, data.message);
-         setTimeout(() => {
-            navigate('/')
-         }, 3000)
-      } else {
-         Toast(data.type, data.message);
-         // setEmail('');
-         // setPassword('');
-      }
+      // const res = await fetch('api/login', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' },
+      //    body: JSON.stringify({
+      //       username: email,
+      //       password,
+      //    })
+      // })
+      // const data = await res.json();
+      // if (res.status === 200) {
+      //    Toast(data.type, data.message);
+      //    setTimeout(() => {
+      //       navigate('/')
+      //    }, 3000)
+      // } else {
+      //    Toast(data.type, data.message);
+      //    // setEmail('');
+      //    // setPassword('');
+      // }
    }
    return (
       <section className="bg-white">
