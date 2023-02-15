@@ -1,6 +1,7 @@
 
 function useAuthCheck() {
-   console.log(document.cookie);
+   const cookieToken = (document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+   
 }
 
 export default useAuthCheck
