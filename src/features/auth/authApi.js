@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { userLoggedIn } from "./authSlice";
 
 
 export const authApi = apiSlice.injectEndpoints({
@@ -16,11 +17,11 @@ export const authApi = apiSlice.injectEndpoints({
             method: 'POST',
             body: data
          }),
-         // async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-         //    const result = await queryFulfilled;
-
-         // }
+         async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+            const result = await queryFulfilled;
+            dispatch(userLoggedIn(result.data))
+         }
       })
    })
 })
-export const { useLoginMutation } = authApi
+export const { useLoginMutation, useRegisterMutation } = authApi

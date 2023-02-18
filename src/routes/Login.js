@@ -8,22 +8,21 @@ export default function Login() {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
 
-   const [login, { isSuccess, isError, data, error }] = useLoginMutation();
+   const [login, { data, error }] = useLoginMutation();
 
    const navigate = useNavigate();
    useEffect(() => {
-      if (isSuccess) {
+      if (data) {
          console.log(data)
          Toast(data?.type, data?.message);
          setTimeout(() => {
             navigate('/')
          }, 3000)
       }
-      if (isError) {
+      if (error) {
          Toast(error.data?.type, error.data?.message);
-
       }
-   }, [isSuccess, isError])
+   }, [data, error, navigate])
    const handleLogin = async (e) => {
       e.preventDefault();
       console.log('login clicked');

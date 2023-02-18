@@ -1,6 +1,17 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function TopBar() {
+   const loggedIn = useSelector((state) => state.auth.loggedIn); //getting login status from Redux store
+
+   // login and register button group
+   const loginRegister = <><Link to="/login" className="text-sm font-medium text-white hover:text-gray-500">Sign in</Link>
+      <span className="h-6 w-px bg-gray-700 mx-4" aria-hidden="true"></span>
+      <Link to="/register" className="text-sm font-medium text-white hover:text-gray-500">Create account</Link></>
+
+   // user dashboard link
+   const userDashboard = <Link className="w-7 h-7"><img className="rounded-full" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1676727705~exp=1676728305~hmac=67a5f2b2315cdebcb0620bccd4691915605e376a5c705b79e1d96b5a4f88c1ef" alt="user-avatar" /></Link>
+
    return (
       <div className="bg-gray-900">
          <div className="flex mx-auto max-w-7xl align-center justify-between px-4 sm:px-6 lg:px-4 ">
@@ -28,13 +39,9 @@ export default function TopBar() {
                <p className="flex h-10 items-center justify-center px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
             </div>
             <div id="cta" className="flex items-center justify-center">
-               <Link to="/login" className="text-sm font-medium text-white hover:text-gray-500">Sign in</Link>
-               <span className="h-6 w-px bg-gray-700 mx-4" aria-hidden="true"></span>
-               <Link to="/register" className="text-sm font-medium text-white hover:text-gray-500">Create account</Link>
+               {loggedIn ? userDashboard : loginRegister}
             </div>
          </div>
       </div>
-
-
    )
 }

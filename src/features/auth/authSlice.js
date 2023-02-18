@@ -12,8 +12,7 @@ export const authSlice = createSlice({
    reducers: {
       userLoggedIn: (state, action) => {
          state.loggedIn = true;
-         state.token = action.payload.token;
-         state.user = action.payload.user;
+         //state.user = action.payload.user;
       }
    }
 });

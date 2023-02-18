@@ -1,49 +1,67 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Toast from "../components/ui/Toast";
+import { useRegisterMutation } from "../features/auth/authApi";
 
 export default function Signup() {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
 
+   const [register, { data, }] = useRegisterMutation()
    const navigate = useNavigate();
 
-   const handleSignup = (event) => {
-      event.preventDefault()
-      if (event.target.term_condition.value === 'on') {
-         var formData = {
-            username: email,
-            password: password,
-            agreed: true
-         }
+   useEffect(() => {
+      if (data) {
+         Toast(data?.status, data?.message,);
+         setTimeout(() => {
+            navigate('/')
+         }, 3000);
       } else {
-         formData = {
-            username: email,
-            password: password,
-            agreed: false,
-         }
+         Toast(data?.status, data?.message,);
       }
-      fetch('/register', {
-         method: 'POST',
-         body: JSON.stringify(formData),
-         // Adding headers to the request
-         headers: {
-            "Content-type": "application/json; charset=UTF-8"
-         }
-      })
-         .then((res) => res.json())
-         .then((data) => {
-            if (data.status) {
-               Toast(data.status, data.message,);
-               setTimeout(() => {
-                  navigate('/login')
-               }, 3000)
-            } else {
-               Toast(data.status, data.message,);
-            }
-         })
+   }, [data, navigate])
+
+
+   const handleSignup = (event) => {
+      event.preventDefault();
+
+      register({ username: email, password });
+
+
+      // if (event.target.term_condition.value === 'on') {
+      //    var formData = {
+      //       username: email,
+      //       password: password,
+      //       agreed: true
+      //    }
+      // } else {
+      //    formData = {
+      //       username: email,
+      //       password: password,
+      //       agreed: false,
+      //    }
+      // }
+      // fetch('/register', {
+      //    method: 'POST',
+      //    body: JSON.stringify(formData),
+      //    // Adding headers to the request
+      //    headers: {
+      //       "Content-type": "application/json; charset=UTF-8"
+      //    }
+      // })
+      //    .then((res) => res.json())
+      //    .then((data) => {
+      //       if (data.status) {
+      //          Toast(data.status, data.message,);
+      //          setTimeout(() => {
+      //             navigate('/login')
+      //          }, 3000)
+      //       } else {
+      //          Toast(data.status, data.message,);
+      //       }
+      //    })
    }
 
    return (
