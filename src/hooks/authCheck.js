@@ -1,13 +1,19 @@
-import { useDispatch } from "react-redux";
-import { userLoggedIn } from "../features/auth/authSlice";
+import { useEffect, useState } from "react";
+import { useGetLoggedInUserQuery } from "../features/auth/authApi";
 
 function useAuthCheck() {
-   const dispatch = useDispatch();
+   const [authCheck, setAuthCheck] = useState(false)
+   const [skipFetch, setSkipFetch] = useState(false)
+   const { data } = useGetLoggedInUserQuery(undefined, { skip: skipFetch });
 
    const cookieToken = (document.cookie.replace(/(?:(?:^|.*;\s*)sessionToken\s*\s*([^;]*).*$)|^.*$/, "$1"));
-   if (cookieToken) {
-      dispatch(userLoggedIn())
-   }
+   useEffect(() => {
+      if (cookieToken && data?.user) {
+         setSkipFetch(true);
+         setAuthCheck(true);
+      }
+   }, [cookieToken, data,]);
+   return authCheck
 }
 
 export default useAuthCheck

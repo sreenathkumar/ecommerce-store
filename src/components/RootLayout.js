@@ -1,12 +1,13 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 
 export default function RootLayout() {
-   const path = document.location.pathname;
+   const { pathname } = useLocation();
+   console.log(pathname);
    return (
       <>
-         {path !== '/admin/dashboard' && <Header></Header>}
+         {pathname !== '/admin/dashboard' && <Header></Header>}
          <main className='max-w-screen-2xl'>
             <Outlet />
          </main>

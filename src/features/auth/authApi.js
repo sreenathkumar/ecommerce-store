@@ -1,5 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
-import { userLoggedIn } from "./authSlice";
+import { userLoggedIn, userLoggedOut } from "./authSlice";
 
 
 export const authApi = apiSlice.injectEndpoints({
@@ -18,10 +18,35 @@ export const authApi = apiSlice.injectEndpoints({
             body: data
          }),
          async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-            const result = await queryFulfilled;
-            dispatch(userLoggedIn(result.data))
+            const { data } = await queryFulfilled;
+            if (data.user) {
+               dispatch(userLoggedIn(data.user))
+            }
+         }
+      }),
+      logout: builder.mutation({
+         query: () => ({
+            url: "/logout",
+            method: 'POST',
+         }),
+         async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+            const { data } = await queryFulfilled;
+            if (data.type === "success") {
+               dispatch(userLoggedOut())
+            }
+         }
+      }),
+      getLoggedInUser: builder.query({
+         query: () => ({
+            url: '/user',
+            method: 'GET',
+            credentials: 'include'
+         }),
+         async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+            const { data } = await queryFulfilled
+            dispatch(userLoggedIn(data.user))
          }
       })
    })
 })
-export const { useLoginMutation, useRegisterMutation } = authApi
+export const { useLoginMutation, useRegisterMutation, useGetLoggedInUserQuery, useLogoutMutation } = authApi
