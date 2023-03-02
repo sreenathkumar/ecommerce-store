@@ -5,6 +5,6 @@ import { router } from './utils/router';
 
 
 export default function App() {
-   useAuthCheck()
-   return (<RouterProvider router={router} />)
+   const authChecked = useAuthCheck();
+   return (authChecked ? <RouterProvider router={router} /> : <div>Loading</div>)
 }

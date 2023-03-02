@@ -10,8 +10,9 @@ function useAuthCheck() {
    useEffect(() => {
       if (cookieToken && data?.user) {
          setSkipFetch(true);
-         setAuthCheck(true);
+
       }
+      setAuthCheck(true);
    }, [cookieToken, data,]);
    return authCheck
 }

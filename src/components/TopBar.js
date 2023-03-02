@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useGetLoggedInUserQuery } from "../features/auth/authApi";
 import UserDropdown from "./ui/UserDropdown";
 
 export default function TopBar() {
