@@ -6,7 +6,6 @@ export default function FullSidebar() {
    const { pathname } = useLocation();
    const [userName, setUserName] = useState('');
    const [userEmail, setUserEmail] = useState('')
-   console.log('admin dashboard');
 
    //const { data } = useLoggedInUserQuery();
    const user = useSelector((state) => state.auth.user);

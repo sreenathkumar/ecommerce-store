@@ -13,7 +13,6 @@ export default function Login() {
    const navigate = useNavigate();
    useEffect(() => {
       if (data) {
-         console.log(data)
          Toast(data?.type, data?.message);
          setTimeout(() => {
             navigate('/')
