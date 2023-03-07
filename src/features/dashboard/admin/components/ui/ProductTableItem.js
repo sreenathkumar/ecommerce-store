@@ -1,6 +1,12 @@
+import { useDispatch } from "react-redux";
+import { deleteSingleProduct } from "../../redux/adminSlice";
 
 export default function ProductTableItem({ product, openModal }) {
-
+   const dispatch = useDispatch()
+   const handleDeleteProduct = () => {
+      dispatch(deleteSingleProduct(product));
+      openModal();
+   }
    return (
       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
          <td className="w-4 p-4">
@@ -16,7 +22,7 @@ export default function ProductTableItem({ product, openModal }) {
             Silver
          </td>
          <td className="px-6 py-4">
-            Laptop
+            {product?.categories[0]}
          </td>
          <td className="px-6 py-4">
             Yes
@@ -32,7 +38,7 @@ export default function ProductTableItem({ product, openModal }) {
          </td>
          <td className="flex items-center px-6 py-4 space-x-3">
             <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</span>
-            <span onClick={openModal} className="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</span>
+            <span onClick={handleDeleteProduct} className="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</span>
          </td>
       </tr>
    )

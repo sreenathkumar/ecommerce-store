@@ -7,7 +7,6 @@ export default function Products() {
    const [showModal, setShowModal] = useState(false)
    const { data, } = useGetAllProductsQuery();
    const openModal = () => {
-      console.log('hello world');
       setShowModal(true);
    }
    const closeModal = () => {
