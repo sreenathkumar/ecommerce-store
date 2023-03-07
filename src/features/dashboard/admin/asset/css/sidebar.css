@@ -1,3 +1,6 @@
 .my-tran {
    transition: all 1s ease-in-out;
 }
+#deleteModal .sk-modal {
+   margin-top: 50%;
+}

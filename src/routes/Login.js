@@ -25,10 +25,15 @@ export default function Login() {
    const handleLogin = async (e) => {
       e.preventDefault();
       console.log('login clicked');
-      login({
-         username: email,
-         password
-      });
+      try {
+         login({
+            username: email,
+            password
+         });
+      } catch (er) {
+         console.log(er);
+      }
+
    }
    return (
       <section className="bg-white">
