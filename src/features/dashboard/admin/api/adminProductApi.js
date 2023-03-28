@@ -11,7 +11,7 @@ export const adminProductApi = apiSlice.injectEndpoints({
       }),
       deleteProduct: builder.mutation({
          query: (id) => ({
-            url: `/products/:${id}`,
+            url: `/products/${id}`,
             method: 'DELETE',
          })
       }),

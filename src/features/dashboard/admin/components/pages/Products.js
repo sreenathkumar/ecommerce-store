@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { useGetAllProductsQuery } from "../../api/adminProductApi"
 import ModalDelete from "../ui/ModalDelete";
 import ProductTableItem from "../ui/ProductTableItem";
@@ -12,8 +13,10 @@ export default function Products() {
    const closeModal = () => {
       setShowModal(false);
    }
+
    console.log(data);
-   return (
+   return (<>
+      <ToastContainer />
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
          {showModal && <ModalDelete closeModal={closeModal} />}
          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -58,6 +61,6 @@ export default function Products() {
             </tbody>
          </table>
       </div>
-
+   </>
    )
 }

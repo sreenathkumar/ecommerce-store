@@ -1,11 +1,8 @@
-import { useEffect } from "react"
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLoginMutation } from "../../features/auth/authApi"
-import { userLoggedOut } from "../../features/auth/authSlice";
+import { useLoginMutation } from "../../features/auth/authApi";
 
 export default function UserDropdown() {
-   const [logout, { isSuccess }] = useLoginMutation();
+   const [logout] = useLoginMutation();
    // const dispatch = useDispatch();
 
    // useEffect(() => {
