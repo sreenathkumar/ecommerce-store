@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { useGetAllProductsQuery } from "../../api/adminProductApi"
+import EditProductModal from "../ui/EditProductModal";
+import Modal from "../ui/Modal";
 import ModalDelete from "../ui/ModalDelete";
 import ProductTableItem from "../ui/ProductTableItem";
 
 export default function Products() {
-   const [showModal, setShowModal] = useState(false)
+   const [showModal, setShowModal] = useState("")
    const { data, } = useGetAllProductsQuery();
-   const openModal = () => {
-      setShowModal(true);
+   const openModal = (type) => {
+      setShowModal(type);
    }
    const closeModal = () => {
-      setShowModal(false);
+      setShowModal('');
    }
 
    console.log(data);
    return (<>
       <ToastContainer />
-      <div className="overflow-x-auto shadow-md sm:rounded-lg">
-         {showModal && <ModalDelete closeModal={closeModal} />}
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+         {/* {showModal && <ModalDelete closeModal={closeModal} />} */}
+         {showModal && <Modal modalContent={(showModal === 'delete' && <ModalDelete closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal />)} />}
          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                <tr>

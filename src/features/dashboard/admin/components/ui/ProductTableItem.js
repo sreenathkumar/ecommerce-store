@@ -5,7 +5,10 @@ export default function ProductTableItem({ product, openModal }) {
    const dispatch = useDispatch()
    const handleDeleteProduct = () => {
       dispatch(deleteSingleProduct(product));
-      openModal();
+      openModal('delete');
+   }
+   const handleEditProduct = () => {
+      openModal('edit');
    }
    return (
       <>
@@ -38,7 +41,7 @@ export default function ProductTableItem({ product, openModal }) {
                3.0 lb.
             </td>
             <td className="flex items-center px-6 py-4 space-x-3">
-               <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</span>
+               <span onClick={handleEditProduct} className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</span>
                <span onClick={handleDeleteProduct} className="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</span>
             </td>
          </tr></>
