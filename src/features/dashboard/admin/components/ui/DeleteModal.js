@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "../../../../../components/ui/Toast";
 import { useDeleteProductMutation } from "../../api/adminProductApi";
-import { cancelDeleteProduct } from "../../redux/adminSlice";
-import Modal from "./Modal";
+import { cancelDeleteProduct } from "../../redux/adminProductSlice";
 
 export default function ModalDelete({ closeModal }) {
    const productToDelete = useSelector((state) => state.admin.deleteProduct); // get the product to delete from redux store

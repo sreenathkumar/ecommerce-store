@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { useGetAllProductsQuery } from "../../api/adminProductApi"
 import EditProductModal from "../ui/EditProductModal";
 import Modal from "../ui/Modal";
-import ModalDelete from "../ui/ModalDelete";
+import DeleteModal from "../ui/DeleteModal";
 import ProductTableItem from "../ui/ProductTableItem";
 
 export default function Products() {
@@ -20,8 +20,8 @@ export default function Products() {
    return (<>
       <ToastContainer />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-         {/* {showModal && <ModalDelete closeModal={closeModal} />} */}
-         {showModal && <Modal modalContent={(showModal === 'delete' && <ModalDelete closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal />)} />}
+         {/* {showModal && <DeleteModal closeModal={closeModal} />} */}
+         {showModal && <Modal modalContent={(showModal === 'delete' && <DeleteModal closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal closeModal={closeModal} />)} />}
          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                <tr>

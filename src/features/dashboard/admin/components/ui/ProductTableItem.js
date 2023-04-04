@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteSingleProduct } from "../../redux/adminSlice";
+import { deleteSingleProduct, editProduct } from "../../redux/adminProductSlice";
 
 export default function ProductTableItem({ product, openModal }) {
    const dispatch = useDispatch()
@@ -8,6 +8,7 @@ export default function ProductTableItem({ product, openModal }) {
       openModal('delete');
    }
    const handleEditProduct = () => {
+      dispatch(editProduct(product))
       openModal('edit');
    }
    return (
