@@ -19,7 +19,7 @@ export const adminProductApi = apiSlice.injectEndpoints({
             const patchRes = dispatch(apiSlice.util.updateQueryData("getAllProducts", undefined, (draft) => {
                const draftObj = JSON.parse(JSON.stringify(draft))
                draft.products = draftObj.products.filter((product) => product._id !== arg);
-
+               draft.total_products = draft.products.length;
             }))
             //optimistic cache update end
 
@@ -32,15 +32,29 @@ export const adminProductApi = apiSlice.injectEndpoints({
       }),
       updateProduct: builder.mutation({
          query: ({ id, data }) => ({
-            url: `/products/:${id}`,
+            url: `/products/${id}`,
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
          }),
-         async onQueryStarted() {
+         async onQueryStarted(arg, { dispatch, queryFulfilled }) {
             //optimistic cache update start
-            apiSlice.util.updateQueryData('getAllProducts',)
+            const patchRes = dispatch(apiSlice.util.updateQueryData("getAllProducts", undefined, (draft) => {
+               const draftObj = JSON.parse(JSON.stringify(draft))
+               draftObj.products.forEach((product, index) => {
+                  if (product._id === arg.id) {
+                     draftObj.products[index] = { ...draftObj.products[index], ...arg.data }
+                  }
+               });
+               draft.products = draftObj.products
+            }))
             //optimistic cache update end
+
+            try {
+               await queryFulfilled
+            } catch (error) {
+               patchRes.undo()
+            }
          }
       })
    })

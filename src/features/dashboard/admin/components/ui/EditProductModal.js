@@ -32,7 +32,9 @@ export default function EditProductModal({ closeModal }) {
       }
       console.log(formData);
       updateProduct({ id: _id, data: formData });
-      data.type === 'success' && closeModal()
+      //console.log(data);
+      //data.type === 'success' && 
+      closeModal()
    }
 
    return (

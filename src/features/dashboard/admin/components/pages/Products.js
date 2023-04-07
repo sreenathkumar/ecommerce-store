@@ -16,7 +16,6 @@ export default function Products() {
       setShowModal('');
    }
 
-   console.log(data);
    return (<>
       <ToastContainer />
       <div className="relative overflow-x-auto">
