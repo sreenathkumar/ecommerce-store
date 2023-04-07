@@ -19,9 +19,17 @@ export default function Products() {
    console.log(data);
    return (<>
       <ToastContainer />
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="relative overflow-x-auto">
          {/* {showModal && <DeleteModal closeModal={closeModal} />} */}
          {showModal && <Modal modalContent={(showModal === 'delete' && <DeleteModal closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal closeModal={closeModal} />)} />}
+         <div className="flex align-center justify-between mb-4">
+            <div className="">
+               <span>Check Box Action</span>
+            </div>
+            <div className="">
+               <button type="button" className="dark:bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add New</button>
+            </div>
+         </div>
          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                <tr>

@@ -4,7 +4,7 @@ import { useDeleteProductMutation } from "../../api/adminProductApi";
 import { cancelDeleteProduct } from "../../redux/adminProductSlice";
 
 export default function ModalDelete({ closeModal }) {
-   const productToDelete = useSelector((state) => state.admin.deleteProduct); // get the product to delete from redux store
+   const productToDelete = useSelector((state) => state.adminProduct.deleteProduct); // get the product to delete from redux store
    const [deleteProduct,] = useDeleteProductMutation()
 
    const dispath = useDispatch();
