@@ -1,6 +1,5 @@
 import { apiSlice } from "../../../api/apiSlice";
 
-
 export const adminProductApi = apiSlice.injectEndpoints({
    endpoints: (builder) => ({
       getAllProducts: builder.query({

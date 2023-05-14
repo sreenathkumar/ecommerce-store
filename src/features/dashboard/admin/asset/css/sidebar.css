@@ -1,6 +1,10 @@
 .my-tran {
    transition: all 1s ease-in-out;
 }
+.dashboard-body-height {
+   min-height: calc(100vh - 75px);
+}
+
 /* #Modal .sk-modal {
    margin-top: 16px;
 } */

@@ -6,14 +6,13 @@ function useAuthCheck() {
    const [skipFetch, setSkipFetch] = useState(false)
    const { data } = useGetLoggedInUserQuery(undefined, { skip: skipFetch });
 
-   const cookieToken = (document.cookie.replace(/(?:(?:^|.*;\s*)sessionToken\s*\s*([^;]*).*$)|^.*$/, "$1"));
-   useEffect(() => {
-      if (cookieToken && data?.user) {
-         setSkipFetch(true);
 
+   useEffect(() => {
+      if (data?.user) {
+         setSkipFetch(true);
       }
       setAuthCheck(true);
-   }, [cookieToken, data,]);
+   }, [data,]);
    return authCheck
 }
 

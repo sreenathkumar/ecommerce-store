@@ -12,14 +12,14 @@ export default function AdminDashboard() {
    }
 
    return (
-      <div className='dark:bg-gray-700 relative'>
+      <>
          <DashboardNav toggelSidebar={toggelSidebar} />
          <FullSidebar toggelSidebar={toggelSidebar} closeSidebar={closeSidebar} />
-         <div className="p-4 h-full sm:ml-64">
-            <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-               <Outlet />
-            </div>
+         <div className="p-4 dashboard-body-height sm:ml-64">
+
+            <Outlet />
+
          </div>
-      </div>
+      </>
    )
 }

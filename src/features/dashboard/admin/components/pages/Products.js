@@ -5,6 +5,7 @@ import EditProductModal from "../ui/EditProductModal";
 import Modal from "../ui/Modal";
 import DeleteModal from "../ui/DeleteModal";
 import ProductTableItem from "../ui/ProductTableItem";
+import { Link } from "react-router-dom";
 
 export default function Products() {
    const [showModal, setShowModal] = useState("")
@@ -21,12 +22,12 @@ export default function Products() {
       <div className="relative overflow-x-auto">
          {/* {showModal && <DeleteModal closeModal={closeModal} />} */}
          {showModal && <Modal modalContent={(showModal === 'delete' && <DeleteModal closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal closeModal={closeModal} />)} />}
-         <div className="flex align-center justify-between mb-4">
+         <div className="flex items-center justify-between mb-4">
             <div className="">
                <span>Check Box Action</span>
             </div>
             <div className="">
-               <button type="button" className="dark:bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add New</button>
+               <Link to='../add-new-product' className="block dark:bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add New</Link>
             </div>
          </div>
          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

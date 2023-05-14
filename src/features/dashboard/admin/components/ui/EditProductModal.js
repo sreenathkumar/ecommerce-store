@@ -80,7 +80,7 @@ export default function EditProductModal({ closeModal }) {
          </form>
          <div className="flex items-center justify-between">
             <button onClick={discardChanges} type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Discard Changes</button>
-            <button type="submit" form='product-form' onSubmit={handleSubmit} disabled={submitDisabled} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:cursor-not-allowed">Save Changes</button>
+            <button type="submit" form='product-form' disabled={submitDisabled} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:cursor-not-allowed">Save Changes</button>
          </div>
       </div>
    )

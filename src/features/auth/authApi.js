@@ -43,8 +43,13 @@ export const authApi = apiSlice.injectEndpoints({
             credentials: 'include'
          }),
          async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-            const { data } = await queryFulfilled
-            dispatch(userLoggedIn(data.user))
+            try {
+               const { data } = await queryFulfilled
+               dispatch(userLoggedIn(data.user))
+            } catch (error) {
+               console.log("User is not logged in");
+            }
+
          }
       })
    })

@@ -3,6 +3,12 @@ import { useLoginMutation } from "../../features/auth/authApi";
 
 export default function UserDropdown() {
    const [logout] = useLoginMutation();
+   const dropdownMenu = [
+      { name: 'Dashboard', url: '/admin/dashboard' },
+      { name: 'Settings', url: '', },
+      { name: 'Earning', url: '', },
+      { name: 'Logout', url: '', }
+   ]
    // const dispatch = useDispatch();
 
    // useEffect(() => {
