@@ -11,7 +11,7 @@ export const adminDashBoardApi = apiSlice.injectEndpoints({
 
       getAdminDashboardMenu: builder.query({
          query: (title) => ({
-            url: `/menus/${title}`,
+            url: `/menus`,
             method: 'GET'
          })
       })
@@ -19,4 +19,4 @@ export const adminDashBoardApi = apiSlice.injectEndpoints({
 
 })
 
-export const { useAddMenuMutation, useGetAdminDashboardMenuQuery } = adminDashBoardApi
+export const { useAddMenuMutation, useGetAdminDashboardMenuQuery, useLazyGetAdminDashboardMenuQuery } = adminDashBoardApi

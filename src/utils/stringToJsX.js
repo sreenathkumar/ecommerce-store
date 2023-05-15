@@ -3,7 +3,7 @@ import React from 'react'
 let getNodes = str =>
    new DOMParser().parseFromString(str, "text/html").body.childNodes;
 let createJSX = nodeArray => {
-   return nodeArray.map(node => {
+   return nodeArray.map((node, index) => {
       let attributeObj = {};
       const {
          attributes,
@@ -34,13 +34,10 @@ let createJSX = nodeArray => {
             }
          });
       }
-      console.log(
-         attributeObj
-      );
       return localName ?
          React.createElement(
             localName,
-            { ...attributeObj, className: 'w-6 h-6 stroke-current' },
+            { ...attributeObj, className: 'w-6 h-6 stroke-current', key: index },
             childNodes && Array.isArray(Array.from(childNodes)) ?
                createJSX(Array.from(childNodes)) :
                []
