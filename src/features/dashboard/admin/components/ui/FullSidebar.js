@@ -1,36 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Dropdown from '../../../../../components/ui/Dropdown';
 import MenuLink from './MenuLink';
-import { useGetAdminDashboardMenuQuery, useLazyGetAdminDashboardMenuQuery } from '../../api/adminDashboardApi';
+import { useGetAdminDashboardMenuQuery } from '../../api/adminDashboardApi';
 
 export default function FullSidebar({ toggelSidebar, closeSidebar }) {
-
+   const { pathname } = useLocation();
    const [userName, setUserName] = useState('');
    const [userEmail, setUserEmail] = useState('');
-   const [activeDropdown, setActiveDropdown] = useState('');
-   const [dropdownOpen, setDropdownOpen] = useState([])
+   const [activeDropdown, setActiveDropdown] = useState(pathname.split('/')[2] || '');
 
    //const { data } = useLoggedInUserQuery();
    const user = useSelector((state) => state.auth.user);
-   const { data: dashboardMenuItems } = useGetAdminDashboardMenuQuery()
+   const { data: dashboardMenuItems } = useGetAdminDashboardMenuQuery();
 
-
+   //left side dashboard menu items
    const dashboardMenu = dashboardMenuItems?.filter((item) => item.title === 'admin_dashboard')[0];
-   console.log(dashboardMenu);
 
+   //changing active dropdown
    const handleDropdown = (name) => {
-      //console.log(dropdownOpen.includes(name.toLowerCase()), name)
       if (activeDropdown.toLowerCase() !== name.toLowerCase()) {
          setActiveDropdown(name.toLowerCase());
-         //let x = dashboardMenuItems?.filter((item) => item.title === `admin_${name.toLowerCase()}_submenu`);
-         //console.log(x);
-         //setDropdownOpen(dashboardMenuItems?.filter((item) => item.title === `admin_${name.toLowerCase()}_submenu`))
       }
    }
-   //console.log(dashboardMenuItems, dropdownOpen);
-
 
    useEffect(() => {
       const { firstName, lastName, username } = user || {};
@@ -60,7 +53,7 @@ export default function FullSidebar({ toggelSidebar, closeSidebar }) {
                      if (item.dropdownMenu) {
                         return (<div key={index} className='w-full'>
                            <MenuLink action={handleDropdown} link={item} />
-                           <Dropdown allItems={dashboardMenuItems} visible={activeDropdown === item.title.toLowerCase()} />
+                           <Dropdown allItems={dashboardMenuItems} activeDropdown={activeDropdown} visible={activeDropdown === item.title.toLowerCase()} />
                         </div>)
                      } else {
                         return <MenuLink key={index} action={handleDropdown} link={item} />
