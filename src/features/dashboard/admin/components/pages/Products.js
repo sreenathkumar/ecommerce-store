@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { useGetAllProductsQuery } from "../../api/adminProductApi"
 import EditProductModal from "../ui/EditProductModal";
 import Modal from "../ui/Modal";
@@ -17,8 +16,7 @@ export default function Products() {
       setShowModal('');
    }
 
-   return (<>
-      <ToastContainer />
+   return (
       <div className="relative overflow-x-auto">
          {/* {showModal && <DeleteModal closeModal={closeModal} />} */}
          {showModal && <Modal modalContent={(showModal === 'delete' && <DeleteModal closeModal={closeModal} />) || (showModal === 'edit' && <EditProductModal closeModal={closeModal} />)} />}
@@ -72,6 +70,5 @@ export default function Products() {
             </tbody>
          </table>
       </div>
-   </>
    )
 }
