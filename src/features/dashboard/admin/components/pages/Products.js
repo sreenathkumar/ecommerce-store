@@ -5,6 +5,7 @@ import Modal from "../ui/Modal";
 import DeleteModal from "../ui/DeleteModal";
 import ProductTableItem from "../ui/ProductTableItem";
 import { Link } from "react-router-dom";
+import ContentTable from "../../../../../components/ui/ContentTable";
 
 export default function Products() {
    const [showModal, setShowModal] = useState("")
@@ -15,7 +16,7 @@ export default function Products() {
    const closeModal = () => {
       setShowModal('');
    }
-
+   const tableHeads= ['Product name', 'Color', 'Category', 'Accesories', 'Available', 'Price', 'Weight', 'Action']
    return (
       <div className="relative overflow-x-auto">
          {/* {showModal && <DeleteModal closeModal={closeModal} />} */}
@@ -25,10 +26,10 @@ export default function Products() {
                <span>Check Box Action</span>
             </div>
             <div className="">
-               <Link to='../add-new-product' className="block dark:bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add New</Link>
+               <Link to='./add-new/product' className="block dark:bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add New</Link>
             </div>
          </div>
-         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+         {/* <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                <tr>
                   <th scope="col" className="p-4">
@@ -68,7 +69,12 @@ export default function Products() {
                   return <ProductTableItem key={index} product={item} openModal={openModal} />
                })}
             </tbody>
-         </table>
+         </table> */}
+         <ContentTable tableHeads={tableHeads}>
+         {data && data?.products.map((item, index) => {
+                  return <ProductTableItem key={index} product={item} openModal={openModal} />
+               })}
+         </ContentTable>
       </div>
    )
 }
