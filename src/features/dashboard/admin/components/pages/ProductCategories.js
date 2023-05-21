@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import placeHolderImage from '../../../../../assets/placeholder_image.png'
+import ContentTable from '../../../../../components/ui/ContentTable';
 export default function ProductCategories() {
    const [categryTitle, setCategryTitle] = useState('');
    const [categoryDescription, setCategoryDescription] = useState('');
    const [categoryParent, setCategoryParent] = useState('None');
-   const [categoryThumbnail, setCategoryThumbnail] = useState(placeHolderImage);
+   const [categoryThumbnail, setCategoryThumbnail] = useState('');
+   const tableHeads = ['Thumbnail', 'Category name', 'Description', 'Parent', 'Action']
    return (
       <div className='flex flex-col gap-2 lg:flex-row'>
          <div className='rounded px-4 py-6 border-2 border-gray-500 border-dashed dark:bg-gray-800 lg:w-4/5'>
+            <ContentTable tableHeads={tableHeads}>
 
+            </ContentTable>
          </div>
          <div className='flex flex-col px-4 py-6 rounded border-2 border-gray-500 border-dashed dark:bg-gray-800'>
             <form id='add-product-category'>

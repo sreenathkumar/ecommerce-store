@@ -12,7 +12,6 @@ export default function ProductTableItem({ product, openModal }) {
       openModal('edit');
    }
    return (
-      <>
          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td className="w-4 p-4">
                <div className="flex items-center">
@@ -45,6 +44,6 @@ export default function ProductTableItem({ product, openModal }) {
                <span onClick={handleEditProduct} className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Edit</span>
                <span onClick={handleDeleteProduct} className="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remove</span>
             </td>
-         </tr></>
+         </tr>
    )
 }
